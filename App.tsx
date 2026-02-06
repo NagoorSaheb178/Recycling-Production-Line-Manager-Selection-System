@@ -20,7 +20,8 @@ import {
   ThemeIcon,
   Box,
   Divider,
-  Container
+  Container,
+  Card
 } from '@mantine/core';
 import { 
   BarChart, 
@@ -153,7 +154,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F1F5F9] pb-20 font-sans">
+    <div className="min-h-screen bg-[#F8FAFC] pb-20 font-sans text-slate-900">
       {/* HEADER */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40 transition-shadow hover:shadow-md duration-300">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -331,188 +332,243 @@ const App: React.FC = () => {
         zIndex={100}
       >
          {selectedCandidate && (
-             <Box className="bg-slate-50 min-h-screen">
+             <Box className="bg-[#F8FAFC] min-h-screen font-sans">
                 {/* HERO HEADER */}
-                <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white pb-20 pt-12 px-6 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-8 opacity-10">
-                        <svg width="400" height="400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>
-                    </div>
-                    <Container size="xl">
-                        <Group justify="space-between" align="start">
-                            <ActionIcon variant="subtle" color="gray" size="xl" onClick={() => setSelectedCandidateId(null)} className="absolute top-4 right-4 text-white hover:bg-white/10 z-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="32" height="32" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                <div className="bg-slate-900 text-white pb-24 pt-12 px-6 relative overflow-hidden">
+                    {/* Abstract Shapes */}
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-900/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
+                    <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-slate-800/50 rounded-full blur-2xl translate-y-1/2 -translate-x-1/4"></div>
+
+                    <Container size="xl" className="relative z-10">
+                         {/* Close Button */}
+                        <div className="absolute top-0 right-0">
+                            <ActionIcon variant="transparent" color="white" size="xl" onClick={() => setSelectedCandidateId(null)} className="opacity-70 hover:opacity-100 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                             </ActionIcon>
-                            <div className="flex flex-col md:flex-row gap-8 items-center md:items-end w-full md:w-auto">
-                                <div className="relative">
-                                    <Avatar 
-                                        src={selectedCandidate.avatar} 
-                                        size={140} 
-                                        className="border-4 border-white shadow-2xl rounded-full md:w-[180px] md:h-[180px]"
-                                    />
-                                    <Badge size="lg" className="absolute -bottom-3 right-4 shadow-md bg-emerald-500 text-white border-2 border-white">
-                                        Rank #{selectedCandidate.rank}
-                                    </Badge>
-                                </div>
-                                <div className="text-center md:text-left">
-                                    <Text size="sm" tt="uppercase" opacity={0.7} fw={700} tracking="wider">{selectedCandidate.id}</Text>
-                                    <Title order={1} className="text-3xl md:text-5xl font-black mb-2 leading-tight">{selectedCandidate.name}</Title>
-                                    <Group gap="xs" justify="center" align="center" className="md:justify-start">
-                                        <Badge size="lg" variant="white" color="dark" className="text-slate-900 font-bold">{selectedCandidate.previousRole}</Badge>
-                                        <Badge size="lg" variant="outline" className="text-white border-white/30">{selectedCandidate.experienceYears} Years Exp</Badge>
-                                    </Group>
+                        </div>
+
+                        <div className="flex flex-col md:flex-row gap-8 items-center md:items-end w-full md:w-auto mt-4">
+                            <div className="relative group">
+                                <Avatar 
+                                    src={selectedCandidate.avatar} 
+                                    size={160} 
+                                    className="border-[6px] border-[#F8FAFC] shadow-2xl rounded-2xl md:w-[180px] md:h-[180px] transition-transform group-hover:scale-[1.02]"
+                                />
+                                <Badge size="xl" radius="md" className="absolute -bottom-4 -right-4 shadow-lg bg-emerald-500 text-white border-4 border-[#F8FAFC] py-3 px-4 h-auto">
+                                    #{selectedCandidate.rank} Ranked
+                                </Badge>
+                            </div>
+                            <div className="text-center md:text-left flex-1">
+                                <Text size="sm" tt="uppercase" c="emerald.4" fw={800} tracking="widest" mb={4}>{selectedCandidate.id}</Text>
+                                <Title order={1} className="text-4xl md:text-6xl font-black mb-4 tracking-tight leading-none text-white">{selectedCandidate.name}</Title>
+                                <Group gap="sm" justify="center" align="center" className="md:justify-start">
+                                    <Badge size="lg" radius="sm" variant="filled" color="dark" className="bg-slate-800 text-slate-200 font-bold py-3 h-8">{selectedCandidate.previousRole}</Badge>
+                                    <Divider orientation="vertical" color="gray" />
+                                    <Text className="text-slate-300 font-medium">{selectedCandidate.experienceYears} Years Experience</Text>
+                                </Group>
+                            </div>
+                             <div className="hidden md:flex flex-col items-end justify-end opacity-90">
+                                <Text size="xs" tt="uppercase" c="slate.400" fw={700} tracking="widest" mb={2}>Overall Index</Text>
+                                <div className="flex items-baseline gap-1">
+                                    <Text className="text-7xl font-black text-emerald-400 leading-none tracking-tighter">{selectedCandidate.totalScore.toFixed(0)}</Text>
+                                    <Text size="xl" className="text-emerald-500/80 font-bold">/100</Text>
                                 </div>
                             </div>
-                            <div className="hidden md:block text-right">
-                                <Text size="xs" tt="uppercase" opacity={0.6} fw={700} mb={1}>Total Index Score</Text>
-                                <Text className="text-7xl font-black text-emerald-400 leading-none">{selectedCandidate.totalScore.toFixed(0)}</Text>
-                                <Text size="sm" className="text-emerald-200">Out of 100</Text>
-                            </div>
-                        </Group>
+                        </div>
                     </Container>
                 </div>
 
                 {/* MAIN CONTENT */}
                 <Container size="xl" className="-mt-12 pb-20 relative z-10 px-4 md:px-0">
                     <Grid gutter="xl">
-                        {/* LEFT COLUMN: INFO */}
+                        
+                        {/* LEFT COLUMN: INFO & ACTIONS */}
                         <Grid.Col span={{ base: 12, md: 4 }}>
-                            <Stack gap="md">
-                                <Paper p="xl" radius="lg" shadow="sm" className="bg-white border border-slate-200">
-                                    <Text fw={700} size="lg" mb="md" c="dark">About Candidate</Text>
-                                    <Text size="sm" c="dimmed" lh={1.6}>
+                            <Stack gap="lg">
+                                {/* About Card */}
+                                <Card radius="lg" p="xl" className="border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]">
+                                    <Text fw={800} size="sm" tt="uppercase" c="slate.400" tracking="widest" mb="lg">Candidate Profile</Text>
+                                    <Text size="md" c="slate.700" lh={1.7} fw={500} mb="xl">
                                         {selectedCandidate.bio}
                                     </Text>
-                                    <Divider my="lg" />
-                                    <Text fw={700} size="sm" mb="xs" c="dark">Core Competencies</Text>
+                                    
+                                    <Text fw={700} size="xs" tt="uppercase" c="slate.900" mb="md" tracking="wide">Competencies</Text>
                                     <Group gap="xs">
                                         {selectedCandidate.skills.map(skill => (
-                                            <Badge key={skill} variant="light" color="gray" size="md">{skill}</Badge>
+                                            <Badge key={skill} variant="outline" color="gray" size="lg" radius="md" className="border-slate-300 text-slate-600 normal-case font-semibold px-3 py-3 h-auto">
+                                                {skill}
+                                            </Badge>
                                         ))}
                                     </Group>
-                                </Paper>
+                                </Card>
 
-                                <Paper p="xl" radius="lg" shadow="sm" className="bg-white border border-slate-200">
-                                    <Text fw={700} size="lg" mb="md" c="dark">Action Menu</Text>
-                                    <Stack>
+                                {/* Actions Card */}
+                                <Card radius="lg" p="lg" className="border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] bg-slate-50">
+                                    <Stack gap="sm">
                                         <Button 
                                             fullWidth 
-                                            size="md" 
+                                            size="lg" 
                                             color="dark" 
+                                            radius="md"
+                                            className="bg-slate-900 hover:bg-slate-800 transition-colors"
                                             onClick={() => handleEvaluate(selectedCandidate.id)}
                                             loading={evaluatingId === selectedCandidate.id}
+                                            leftSection={<span className="text-lg">🤖</span>}
                                         >
-                                            Run AI Re-Evaluation
+                                            Re-Run AI Analysis
                                         </Button>
-                                        <Button fullWidth size="md" variant="default" onClick={() => handleShare(selectedCandidate)}>
-                                            Share Profile Link
+                                        <Button 
+                                            fullWidth 
+                                            size="lg" 
+                                            variant="white" 
+                                            color="gray"
+                                            radius="md"
+                                            className="border border-slate-200 text-slate-600 hover:bg-slate-100"
+                                            onClick={() => handleShare(selectedCandidate)}
+                                            leftSection={<span className="text-lg">🔗</span>}
+                                        >
+                                            Share Profile
                                         </Button>
                                     </Stack>
-                                </Paper>
+                                </Card>
 
-                                <Paper p="xl" radius="lg" shadow="sm" className="bg-white border border-slate-200">
-                                     <Text fw={700} size="sm" mb="md" c="dimmed" tt="uppercase">System Logs</Text>
-                                     <Stack gap="sm">
+                                {/* Logs */}
+                                <div className="px-4">
+                                     <Text fw={700} size="xs" mb="md" c="slate.400" tt="uppercase" tracking="widest">Recent Activity</Text>
+                                     <Stack gap="md">
                                         {logs.slice(0, 3).map((log, i) => (
-                                            <div key={i} className="flex gap-3 items-start text-sm">
-                                                <div className="w-2 h-2 mt-1.5 rounded-full bg-slate-300 flex-shrink-0"></div>
-                                                <div>
-                                                    <Text size="xs" fw={600} c="dark">{log.action}</Text>
-                                                    <Text size="xs" c="dimmed">{log.time}</Text>
+                                            <div key={i} className="flex gap-4 items-center">
+                                                <div className="w-2 h-2 rounded-full bg-slate-300"></div>
+                                                <div className="flex-1">
+                                                    <Text size="sm" fw={600} c="slate.700">{log.action}</Text>
+                                                    <Text size="xs" c="slate.400">{log.time}</Text>
                                                 </div>
                                             </div>
                                         ))}
                                      </Stack>
-                                </Paper>
+                                </div>
                             </Stack>
                         </Grid.Col>
 
-                        {/* RIGHT COLUMN: STATS */}
+                        {/* RIGHT COLUMN: DATA VISUALIZATION */}
                         <Grid.Col span={{ base: 12, md: 8 }}>
                             <Stack gap="lg">
-                                {/* AI SUMMARY BOX */}
-                                <Paper p="xl" radius="lg" shadow="sm" className="bg-white border-l-4 border-emerald-500">
-                                    <Group align="flex-start" wrap="nowrap">
-                                        <ThemeIcon size={40} radius="md" color="emerald" variant="light" className="shrink-0">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-robot" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10a2 2 0 0 1 2 2v1l1 1v3l-1 1v3a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-3l-1 -1v-3l1 -1v-1a2 2 0 0 1 2 -2z" /><path d="M10 16h4" /><circle cx="8.5" cy="11.5" r=".5" fill="currentColor" /><circle cx="15.5" cy="11.5" r=".5" fill="currentColor" /><path d="M9 7l-1 -4" /><path d="M15 7l1 -4" /></svg>
+                                {/* AI Highlight */}
+                                <Card radius="lg" p="xl" className="bg-emerald-50/50 border border-emerald-100 shadow-sm relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-100 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                                    <Group align="flex-start" wrap="nowrap" className="relative z-10">
+                                        <ThemeIcon size={48} radius="xl" color="emerald" variant="light" className="shrink-0 bg-white shadow-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="text-emerald-600" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
                                         </ThemeIcon>
                                         <div>
-                                            <Text size="xs" fw={700} c="emerald.7" tt="uppercase" mb={4}>AI-Generated Executive Summary</Text>
-                                            <Text size="lg" className="text-slate-700 italic leading-relaxed">
+                                            <Text size="xs" fw={800} c="emerald.8" tt="uppercase" tracking="widest" mb={6}>AI Executive Summary</Text>
+                                            <Text size="xl" className="text-slate-800 font-serif italic leading-relaxed">
                                                 "{selectedCandidate.scores.aiSummary}"
                                             </Text>
                                         </div>
                                     </Group>
-                                </Paper>
+                                </Card>
 
                                 {/* METRICS GRID */}
                                 <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="lg">
-                                    <Paper p="lg" radius="lg" shadow="sm" className="bg-white border border-slate-200 flex flex-col items-center text-center hover:border-emerald-200 transition-colors">
-                                        <Text size="sm" fw={700} c="slate.5" tt="uppercase" mb="sm">Crisis Mgmt</Text>
+                                    {/* Crisis Metric */}
+                                    <Paper radius="md" p="lg" className="border border-slate-200 shadow-sm bg-white relative overflow-hidden flex flex-col items-center justify-between group hover:shadow-md transition-all">
+                                        <div className="absolute top-0 w-full h-1 bg-teal-500 opacity-80"></div>
+                                        <div className="w-full flex justify-between items-center mb-4">
+                                             <Text size="xs" fw={700} c="slate.400" tt="uppercase" tracking="widest">Crisis</Text>
+                                             <ThemeIcon variant="light" color="teal" size="sm" radius="xl">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-activity" width="14" height="14" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h4l3 8l4 -16l3 8h4" /></svg>
+                                             </ThemeIcon>
+                                        </div>
                                         <RingProgress
                                             size={120}
+                                            thickness={10}
                                             roundCaps
-                                            thickness={8}
                                             sections={[{ value: selectedCandidate.scores.crisisManagement, color: 'teal' }]}
                                             label={
-                                                <Text c="teal" fw={900} ta="center" size="xl">
+                                                <Text c="teal.8" fw={900} ta="center" size="xl">
                                                     {selectedCandidate.scores.crisisManagement}%
                                                 </Text>
                                             }
                                         />
-                                        <Text size="xs" c="dimmed" mt="sm">Reaction time & Protocol Adherence</Text>
+                                        <Text size="xs" c="dimmed" ta="center" mt="md" fw={500}>Protocol Adherence</Text>
                                     </Paper>
-                                    <Paper p="lg" radius="lg" shadow="sm" className="bg-white border border-slate-200 flex flex-col items-center text-center hover:border-emerald-200 transition-colors">
-                                        <Text size="sm" fw={700} c="slate.5" tt="uppercase" mb="sm">Sustainability</Text>
+
+                                    {/* Sustainability Metric */}
+                                    <Paper radius="md" p="lg" className="border border-slate-200 shadow-sm bg-white relative overflow-hidden flex flex-col items-center justify-between group hover:shadow-md transition-all">
+                                        <div className="absolute top-0 w-full h-1 bg-cyan-500 opacity-80"></div>
+                                        <div className="w-full flex justify-between items-center mb-4">
+                                             <Text size="xs" fw={700} c="slate.400" tt="uppercase" tracking="widest">Sustainability</Text>
+                                             <ThemeIcon variant="light" color="cyan" size="sm" radius="xl">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-leaf" width="14" height="14" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 21c.5 -4.5 2.5 -8 7 -10" /><path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3z" /></svg>
+                                             </ThemeIcon>
+                                        </div>
                                         <RingProgress
                                             size={120}
+                                            thickness={10}
                                             roundCaps
-                                            thickness={8}
                                             sections={[{ value: selectedCandidate.scores.sustainabilityKnowledge, color: 'cyan' }]}
                                             label={
-                                                <Text c="cyan" fw={900} ta="center" size="xl">
+                                                <Text c="cyan.8" fw={900} ta="center" size="xl">
                                                     {selectedCandidate.scores.sustainabilityKnowledge}%
                                                 </Text>
                                             }
                                         />
-                                        <Text size="xs" c="dimmed" mt="sm">Waste Reduction & Circular Econ</Text>
+                                        <Text size="xs" c="dimmed" ta="center" mt="md" fw={500}>Circular Economy</Text>
                                     </Paper>
-                                    <Paper p="lg" radius="lg" shadow="sm" className="bg-white border border-slate-200 flex flex-col items-center text-center hover:border-emerald-200 transition-colors">
-                                        <Text size="sm" fw={700} c="slate.5" tt="uppercase" mb="sm">Motivation</Text>
+
+                                    {/* Motivation Metric */}
+                                    <Paper radius="md" p="lg" className="border border-slate-200 shadow-sm bg-white relative overflow-hidden flex flex-col items-center justify-between group hover:shadow-md transition-all">
+                                        <div className="absolute top-0 w-full h-1 bg-orange-500 opacity-80"></div>
+                                        <div className="w-full flex justify-between items-center mb-4">
+                                             <Text size="xs" fw={700} c="slate.400" tt="uppercase" tracking="widest">Motivation</Text>
+                                             <ThemeIcon variant="light" color="orange" size="sm" radius="xl">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-users" width="14" height="14" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.87" /></svg>
+                                             </ThemeIcon>
+                                        </div>
                                         <RingProgress
                                             size={120}
+                                            thickness={10}
                                             roundCaps
-                                            thickness={8}
                                             sections={[{ value: selectedCandidate.scores.teamMotivation, color: 'orange' }]}
                                             label={
-                                                <Text c="orange" fw={900} ta="center" size="xl">
+                                                <Text c="orange.8" fw={900} ta="center" size="xl">
                                                     {selectedCandidate.scores.teamMotivation}%
                                                 </Text>
                                             }
                                         />
-                                        <Text size="xs" c="dimmed" mt="sm">Leadership & Team Retention</Text>
+                                        <Text size="xs" c="dimmed" ta="center" mt="md" fw={500}>Team Retention</Text>
                                     </Paper>
                                 </SimpleGrid>
 
-                                <Paper p="xl" radius="lg" shadow="sm" className="bg-white border border-slate-200">
-                                    <Text fw={700} size="lg" mb="md" c="dark">Comparative Analysis (vs. Average)</Text>
+                                {/* Performance Chart */}
+                                <Card padding="xl" radius="lg" className="border border-slate-200 shadow-sm bg-white">
+                                    <Group justify="space-between" mb="lg">
+                                        <Text fw={700} size="sm" c="slate.900">PERFORMANCE VS. BENCHMARK</Text>
+                                        <Badge color="gray" variant="light">Average: 71/100</Badge>
+                                    </Group>
                                     <div className="h-64 w-full">
                                         <ResponsiveContainer width="100%" height="100%">
                                             <BarChart data={[
                                                 { metric: 'Crisis', Candidate: selectedCandidate.scores.crisisManagement, Average: 75 },
                                                 { metric: 'Sustain', Candidate: selectedCandidate.scores.sustainabilityKnowledge, Average: 68 },
                                                 { metric: 'Motivate', Candidate: selectedCandidate.scores.teamMotivation, Average: 72 },
-                                            ]}>
-                                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-                                                <XAxis dataKey="metric" tick={{fontSize: 12}} axisLine={false} tickLine={false} />
-                                                <YAxis tick={{fontSize: 12}} axisLine={false} tickLine={false} />
-                                                <RechartsTooltip cursor={{fill: '#f8fafc'}} contentStyle={{borderRadius: '8px', border:'none', boxShadow:'0 4px 6px -1px rgb(0 0 0 / 0.1)'}} />
-                                                <Legend />
-                                                <Bar dataKey="Candidate" fill="#10B981" radius={[4, 4, 0, 0]} />
-                                                <Bar dataKey="Average" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+                                            ]} barCategoryGap="25%">
+                                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                                                <XAxis dataKey="metric" tick={{fontSize: 12, fontWeight: 600, fill:'#64748b'}} axisLine={false} tickLine={false} dy={10} />
+                                                <YAxis tick={{fontSize: 12, fill:'#94a3b8'}} axisLine={false} tickLine={false} />
+                                                <RechartsTooltip 
+                                                    cursor={{fill: '#f8fafc'}} 
+                                                    contentStyle={{borderRadius: '12px', border:'none', boxShadow:'0 10px 15px -3px rgba(0, 0, 0, 0.1)', padding: '12px'}}
+                                                    itemStyle={{ fontSize: '12px', fontWeight: 600 }}
+                                                />
+                                                <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px' }}/>
+                                                <Bar dataKey="Candidate" fill="#10B981" radius={[6, 6, 0, 0]} name={selectedCandidate.name.split(' ')[0]} />
+                                                <Bar dataKey="Average" fill="#e2e8f0" radius={[6, 6, 0, 0]} name="Company Avg" />
                                             </BarChart>
                                         </ResponsiveContainer>
                                     </div>
-                                </Paper>
+                                </Card>
                             </Stack>
                         </Grid.Col>
                     </Grid>
