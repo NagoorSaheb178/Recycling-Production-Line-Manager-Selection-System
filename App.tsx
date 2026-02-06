@@ -358,7 +358,7 @@ const App: React.FC = () => {
                                 </Badge>
                             </div>
                             <div className="text-center md:text-left flex-1">
-                                <Text size="sm" tt="uppercase" c="emerald.4" fw={800} tracking="widest" mb={4}>{selectedCandidate.id}</Text>
+                                <Text size="sm" tt="uppercase" c="emerald.4" fw={800} className="tracking-widest" mb={4}>{selectedCandidate.id}</Text>
                                 <Title order={1} className="text-4xl md:text-6xl font-black mb-4 tracking-tight leading-none text-white">{selectedCandidate.name}</Title>
                                 <Group gap="sm" justify="center" align="center" className="md:justify-start">
                                     <Badge size="lg" radius="sm" variant="filled" color="dark" className="bg-slate-800 text-slate-200 font-bold py-3 h-8">{selectedCandidate.previousRole}</Badge>
@@ -367,7 +367,7 @@ const App: React.FC = () => {
                                 </Group>
                             </div>
                              <div className="hidden md:flex flex-col items-end justify-end opacity-90">
-                                <Text size="xs" tt="uppercase" c="slate.400" fw={700} tracking="widest" mb={2}>Overall Index</Text>
+                                <Text size="xs" tt="uppercase" c="slate.400" fw={700} className="tracking-widest" mb={2}>Overall Index</Text>
                                 <div className="flex items-baseline gap-1">
                                     <Text className="text-7xl font-black text-emerald-400 leading-none tracking-tighter">{selectedCandidate.totalScore.toFixed(0)}</Text>
                                     <Text size="xl" className="text-emerald-500/80 font-bold">/100</Text>
@@ -386,12 +386,12 @@ const App: React.FC = () => {
                             <Stack gap="lg">
                                 {/* About Card */}
                                 <Card radius="lg" p="xl" className="border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]">
-                                    <Text fw={800} size="sm" tt="uppercase" c="slate.400" tracking="widest" mb="lg">Candidate Profile</Text>
+                                    <Text fw={800} size="sm" tt="uppercase" c="slate.400" className="tracking-widest" mb="lg">Candidate Profile</Text>
                                     <Text size="md" c="slate.700" lh={1.7} fw={500} mb="xl">
                                         {selectedCandidate.bio}
                                     </Text>
                                     
-                                    <Text fw={700} size="xs" tt="uppercase" c="slate.900" mb="md" tracking="wide">Competencies</Text>
+                                    <Text fw={700} size="xs" tt="uppercase" c="slate.900" mb="md" className="tracking-wide">Competencies</Text>
                                     <Group gap="xs">
                                         {selectedCandidate.skills.map(skill => (
                                             <Badge key={skill} variant="outline" color="gray" size="lg" radius="md" className="border-slate-300 text-slate-600 normal-case font-semibold px-3 py-3 h-auto">
@@ -433,7 +433,7 @@ const App: React.FC = () => {
 
                                 {/* Logs */}
                                 <div className="px-4">
-                                     <Text fw={700} size="xs" mb="md" c="slate.400" tt="uppercase" tracking="widest">Recent Activity</Text>
+                                     <Text fw={700} size="xs" mb="md" c="slate.400" tt="uppercase" className="tracking-widest">Recent Activity</Text>
                                      <Stack gap="md">
                                         {logs.slice(0, 3).map((log, i) => (
                                             <div key={i} className="flex gap-4 items-center">
@@ -460,7 +460,7 @@ const App: React.FC = () => {
                                             <svg xmlns="http://www.w3.org/2000/svg" className="text-emerald-600" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
                                         </ThemeIcon>
                                         <div>
-                                            <Text size="xs" fw={800} c="emerald.8" tt="uppercase" tracking="widest" mb={6}>AI Executive Summary</Text>
+                                            <Text size="xs" fw={800} c="emerald.8" tt="uppercase" className="tracking-widest" mb={6}>AI Executive Summary</Text>
                                             <Text size="xl" className="text-slate-800 font-serif italic leading-relaxed">
                                                 "{selectedCandidate.scores.aiSummary}"
                                             </Text>
@@ -474,7 +474,7 @@ const App: React.FC = () => {
                                     <Paper radius="md" p="lg" className="border border-slate-200 shadow-sm bg-white relative overflow-hidden flex flex-col items-center justify-between group hover:shadow-md transition-all">
                                         <div className="absolute top-0 w-full h-1 bg-teal-500 opacity-80"></div>
                                         <div className="w-full flex justify-between items-center mb-4">
-                                             <Text size="xs" fw={700} c="slate.400" tt="uppercase" tracking="widest">Crisis</Text>
+                                             <Text size="xs" fw={700} c="slate.400" tt="uppercase" className="tracking-widest">Crisis</Text>
                                              <ThemeIcon variant="light" color="teal" size="sm" radius="xl">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-activity" width="14" height="14" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h4l3 8l4 -16l3 8h4" /></svg>
                                              </ThemeIcon>
@@ -497,7 +497,7 @@ const App: React.FC = () => {
                                     <Paper radius="md" p="lg" className="border border-slate-200 shadow-sm bg-white relative overflow-hidden flex flex-col items-center justify-between group hover:shadow-md transition-all">
                                         <div className="absolute top-0 w-full h-1 bg-cyan-500 opacity-80"></div>
                                         <div className="w-full flex justify-between items-center mb-4">
-                                             <Text size="xs" fw={700} c="slate.400" tt="uppercase" tracking="widest">Sustainability</Text>
+                                             <Text size="xs" fw={700} c="slate.400" tt="uppercase" className="tracking-widest">Sustainability</Text>
                                              <ThemeIcon variant="light" color="cyan" size="sm" radius="xl">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-leaf" width="14" height="14" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 21c.5 -4.5 2.5 -8 7 -10" /><path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3z" /></svg>
                                              </ThemeIcon>
@@ -520,7 +520,7 @@ const App: React.FC = () => {
                                     <Paper radius="md" p="lg" className="border border-slate-200 shadow-sm bg-white relative overflow-hidden flex flex-col items-center justify-between group hover:shadow-md transition-all">
                                         <div className="absolute top-0 w-full h-1 bg-orange-500 opacity-80"></div>
                                         <div className="w-full flex justify-between items-center mb-4">
-                                             <Text size="xs" fw={700} c="slate.400" tt="uppercase" tracking="widest">Motivation</Text>
+                                             <Text size="xs" fw={700} c="slate.400" tt="uppercase" className="tracking-widest">Motivation</Text>
                                              <ThemeIcon variant="light" color="orange" size="sm" radius="xl">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-users" width="14" height="14" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.87" /></svg>
                                              </ThemeIcon>
